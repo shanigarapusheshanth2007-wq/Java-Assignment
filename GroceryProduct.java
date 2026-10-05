@@ -12,9 +12,21 @@ abstract class GroceryProduct extends Product {
         this.Manufacturing = Manufacturing;
         this.Expire = Expire;
         this.Weight = Weight;
-        this.setCategory("Electronics");
+        this.setCategory("Grocery");
+    }
+//clone
+
+    protected GroceryProduct(GroceryProduct g) {
+        super(g);
+        this.Manufacturing = g.Manufacturing;
+        // this.Expire = g.Expire;
+        this.Weight = g.Weight;
+        this.setCategory("Grocery");
     }
 
+    protected int getWeight() {
+        return Weight;
+    }
 }
 
 class Milk extends GroceryProduct implements Expirable {
@@ -34,6 +46,12 @@ class Milk extends GroceryProduct implements Expirable {
         this.Expire = Expire;
         this.Weight = Weight;
         this.setCategory("Electronics");
+    }
+
+    //clone constructor
+    public Milk(Milk m) {
+        super(m);
+        // this.Expire = m.Expire;
     }
 
     @Override
@@ -56,6 +74,16 @@ class Milk extends GroceryProduct implements Expirable {
         return "Keep refrigerated and consume before expiry.";
     }
 
+    //getter
+    public int getExpire() {
+        return Expire;
+    }
+
+    //ssetter
+    public void setExpire(int i) {
+        this.Expire = i;
+    }
+
 }
 
 class Bread extends GroceryProduct implements Expirable {
@@ -67,6 +95,11 @@ class Bread extends GroceryProduct implements Expirable {
             String Manufacturing, int Expire, int Weight) {
         super(product_name, brand, retail_price, available_quantity,
                 Discount, Tax, Delivery, Return_days, Additional_festival_discount, Manufacturing, Expire, Weight);
+    }
+
+    public Bread(Bread m) {
+        super(m);
+        // this.Expire = m.Expire;
     }
 
     @Override
@@ -99,6 +132,11 @@ class Juice extends GroceryProduct implements Expirable {
                 Additional_festival_discount, Manufacturing, Expire, Weight);
     }
 
+    public Juice(Juice m) {
+        super(m);
+        // this.Expire = m.Expire;
+    }
+
     @Override
     public void getExpiryDate() {
         System.out.println("Expire date is :" + this.Expire + "and not expire yest");
@@ -125,5 +163,3 @@ interface Expirable {
         System.out.println("Checking whether the product has expired...has not declared method in it(Not overriden)");
     }
 }
-//methods 
-

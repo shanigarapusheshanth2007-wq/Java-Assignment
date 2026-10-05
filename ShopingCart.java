@@ -5,14 +5,33 @@ class ShopingCart {
 
     private ArrayList<Product> cart = new ArrayList<Product>();
 
-    protected void addProduct(Product p) {
-        cart.add(p);
-        p.removeAvailable(1);
+    protected void addProduct(Product pp) {
+        for (Product p : cart) {
+
+            if (p.equals(pp)) {
+                System.out.println("Product already exists");
+
+                System.out.println("Previous available quantity: "
+                        + p.getAvailableQuantity());
+
+                System.out.println("Added quantity: "
+                        + pp.getAvailableQuantity());
+
+                p.addAvailable(pp.getAvailableQuantity());
+
+                System.out.println("Total available quantity: "
+                        + p.getAvailableQuantity());
+
+                return;
+            }
+        }
+        cart.add(pp);
+        System.out.println("Product added to the cart");
     }
-    protected void addProduct(Product[] p)
-    {
-        for(Product product:p)
-        {
+
+    protected void addProduct(Product[] p) {
+
+        for (Product product : p) {
             cart.add(product);
         }
     }

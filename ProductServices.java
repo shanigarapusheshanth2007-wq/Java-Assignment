@@ -1,20 +1,25 @@
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 class ProductServices {
 
-    static ArrayList<Product> products = new ArrayList<Product>();
+    static List<Product> products = new ArrayList<Product>();
+    static Set<Product> products1 = new HashSet<Product>();
 
     static public void getDetails(Product p) {
         System.out.println("--->Details");
         System.out.println(p.getCategory());
+        System.out.println("Retail price :" + p.getRetailPrice());
         System.out.println("Discount : " + p.getDiscount() + "% | Tax: " + p.getTax() + "% | Delivery: ₹" + p.getDelivery() + "\n"
                 + "Return: " + p.getReturn_days() + " days | Additional festival discount: " + p.getAdditional_festival_discount() + "%");
         // System.out.println("-------------------------------------------------------------=------------");ff
     }
+
     //search methods
     //by id
-
     public Product searcgById(int id) {
         System.out.println("------------------------------Searchbyid-------------------------------------------");
 
@@ -33,7 +38,7 @@ class ProductServices {
         System.out.println("------------------------------Searchbyid-------------------------------------------");
 
         for (Product i : products) {
-            if (i.getProductName() == name) {
+            if (i.getProductName().equals(name)) {
                 return i;
             }
         }
@@ -144,5 +149,41 @@ class ProductServices {
 
     }
 
+    //
+    static void addToProduct(Product pp) {
+
+        for (Product p : products) {
+
+            if (p.equals(pp)) {
+                System.out.println("Product already exists");
+
+                System.out.println("Previous available quantity: "
+                        + p.getAvailableQuantity());
+
+                System.out.println("Added quantity: "
+                        + pp.getAvailableQuantity());
+
+                p.addAvailable(pp.getAvailableQuantity());
+
+                System.out.println("Total available quantity: "
+                        + p.getAvailableQuantity());
+
+                return;
+            }
+        }
+
+        // If we reach here, product was NOT found
+        products.add(pp);
+        products1.add(pp);
+        System.out.println("New product added");
+        pp.history_creator();
+        pp.setRetailPrice(pp.getRetailPrice());
+    }
+
+    public void printall() {
+        for (Product p : products) {
+            System.out.println(p);
+        }
+    }
 
 }

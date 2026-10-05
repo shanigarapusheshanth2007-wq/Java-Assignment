@@ -4,12 +4,23 @@ abstract class ElectronicProduct extends Product {
     protected String Manufacturer;
     protected String Warranty_Period;
     protected String Power_Consumption;
+    protected Manufacturer Manufacture;
 
     public ElectronicProduct(String product_name, String brand, int retail_price, int available_quantity, int Discount,
-            int Tax, int Delivery, int Return_days, int Additional_festival_discount, String Manufacturer, String Warranty_periodString, String Power_Consumption) {
+            int Tax, int Delivery, int Return_days, int Additional_festival_discount, String Manufacturer, String Warranty_periodString, String Power_Consumption,
+            Manufacturer m) {
 
         super(product_name, brand, retail_price, available_quantity, Discount, Tax, Delivery, Return_days, Additional_festival_discount);
 
+        this.Manufacturer = Manufacturer;
+        this.Warranty_Period = Warranty_Period;
+        this.Power_Consumption = Power_Consumption;
+        this.setCategory("Electronics");
+        this.Manufacture = m;
+    }
+
+    public ElectronicProduct(ElectronicProduct e) {
+        super(e);
         this.Manufacturer = Manufacturer;
         this.Warranty_Period = Warranty_Period;
         this.Power_Consumption = Power_Consumption;
@@ -21,9 +32,13 @@ abstract class ElectronicProduct extends Product {
 class Television extends ElectronicProduct implements SpecialShipping {
 
     //constructor
-    public Television(String product_name, String brand, int retail_price, int available_quantity, int Discount, int Tax, int Delivery, int Return_days, int Additional_festival_discount, String Manufacturer, String Warranty_Period, String Power_Consumption) {
-        super(product_name, brand, retail_price, available_quantity, Discount, Tax, Delivery, Return_days, Additional_festival_discount, Manufacturer, Warranty_Period, Power_Consumption);
+    public Television(String product_name, String brand, int retail_price, int available_quantity, int Discount, int Tax, int Delivery, int Return_days, int Additional_festival_discount, String Manufacturer, String Warranty_Period, String Power_Consumption, Manufacturer m) {
+        super(product_name, brand, retail_price, available_quantity, Discount, Tax, Delivery, Return_days, Additional_festival_discount, Manufacturer, Warranty_Period, Power_Consumption, m);
 
+    }
+
+    public Television(Television t) {
+        super(t);
     }
 
     //giving actual body
@@ -47,9 +62,14 @@ class Television extends ElectronicProduct implements SpecialShipping {
 class Laptop extends ElectronicProduct implements vison, SpecialShipping {
 
     //constructor
-    public Laptop(String product_name, String brand, int retail_price, int available_quantity, String Manufacturer, String Warranty_Period, String Power_Consumption, int Discount, int Tax, int Delivery, int Return_days, int Additional_festival_discount) {
-        super(product_name, brand, retail_price, available_quantity, Discount, Tax, Delivery, Return_days, Additional_festival_discount, Manufacturer, Warranty_Period, Power_Consumption);
+    public Laptop(String product_name, String brand, int retail_price, int available_quantity, String Manufacturer, String Warranty_Period, String Power_Consumption, int Discount, int Tax, int Delivery, int Return_days, int Additional_festival_discount, Manufacturer m) {
+        super(product_name, brand, retail_price, available_quantity, Discount, Tax, Delivery, Return_days, Additional_festival_discount, Manufacturer, Warranty_Period, Power_Consumption, m);
 
+    }
+
+    //clone
+    public Laptop(Television t) {
+        super(t);
     }
 
     //get discriptiuon
@@ -77,9 +97,14 @@ class Laptop extends ElectronicProduct implements vison, SpecialShipping {
 class BluetoothSpeaker extends ElectronicProduct implements sound {
     //constructor
 
-    public BluetoothSpeaker(String product_name, String brand, int retail_price, int available_quantity, String Manufacturer, String Warranty_Period, String Power_Consumption, int Discount, int Tax, int Delivery, int Return_days, int Additional_festival_discount) {
-        super(product_name, brand, retail_price, available_quantity, Discount, Tax, Delivery, Return_days, Additional_festival_discount, Manufacturer, Warranty_Period, Power_Consumption);
+    public BluetoothSpeaker(String product_name, String brand, int retail_price, int available_quantity, String Manufacturer, String Warranty_Period, String Power_Consumption, int Discount, int Tax, int Delivery, int Return_days, int Additional_festival_discount, Manufacturer m) {
+        super(product_name, brand, retail_price, available_quantity, Discount, Tax, Delivery, Return_days, Additional_festival_discount, Manufacturer, Warranty_Period, Power_Consumption, m);
 
+    }
+
+    //clone
+    public BluetoothSpeaker(Television t) {
+        super(t);
     }
 
     //play method from interface
@@ -102,8 +127,13 @@ class BluetoothSpeaker extends ElectronicProduct implements sound {
 class WirelessHeadphones extends ElectronicProduct implements sound {
 
     //constructor
-    public WirelessHeadphones(String product_name, String brand, int retail_price, int available_quantity, String Manufacturer, String Warranty_Period, String Power_Consumption, int Discount, int Tax, int Delivery, int Return_days, int Additional_festival_discount) {
-        super(product_name, brand, retail_price, available_quantity, Discount, Tax, Delivery, Return_days, Additional_festival_discount, Manufacturer, Warranty_Period, Power_Consumption);
+    public WirelessHeadphones(String product_name, String brand, int retail_price, int available_quantity, String Manufacturer, String Warranty_Period, String Power_Consumption, int Discount, int Tax, int Delivery, int Return_days, int Additional_festival_discount, Manufacturer m) {
+        super(product_name, brand, retail_price, available_quantity, Discount, Tax, Delivery, Return_days, Additional_festival_discount, Manufacturer, Warranty_Period, Power_Consumption, m);
+    }
+
+    //clone
+    public WirelessHeadphones(Television t) {
+        super(t);
     }
 
     //play method
@@ -145,5 +175,45 @@ interface SpecialShipping {
 
     default void prepareForShipping() {
         System.out.println("Method not overriden");
+    }
+}
+
+class Manufacturer {
+
+    private String Name;
+    private String country;
+
+    public Manufacturer(String Name, String country) {
+        this.Name = Name;
+        this.country = country;
+    }
+
+    //clone deep copy
+    public Manufacturer(Manufacturer m) {
+        this.Name = m.Name;
+        this.country = m.country;
+    }
+
+    //getter setters
+    protected void setName(String name) {
+        this.Name = name;
+    }
+
+    protected void setCountry(String country) {
+        this.country = country;
+    }
+
+    protected String getName() {
+        return this.Name;
+    }
+
+    protected String getCountry() {
+        return this.country;
+    }
+
+    public void display() {
+        System.out.println("***************Manufacturer info***********");
+        System.out.println("Name is :" + this.Name);
+        System.out.println("Country is : " + this.country);
     }
 }
