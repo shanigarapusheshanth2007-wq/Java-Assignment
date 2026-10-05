@@ -20,6 +20,9 @@ class ProductServices {
 
     //search methods
     //by id
+    //update product
+
+
     public Product searcgById(int id) {
         System.out.println("------------------------------Searchbyid-------------------------------------------");
 
@@ -117,6 +120,7 @@ class ProductServices {
         }
         System.out.println("-------------------------------------------------End---------------------------------------------");
     }
+    //for(Product p: products)
 
     //dalculateDiscount(),
     public void calculateDiscount() {

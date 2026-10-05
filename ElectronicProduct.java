@@ -27,6 +27,14 @@ abstract class ElectronicProduct extends Product {
         this.setCategory("Electronics");
     }
 
+    @Override
+    public void printDetails() {
+        super.printDetails();
+        System.out.println("Manufacturer is :" + Manufacturer);
+        System.out.println("Warranty :" + Warranty_Period);
+        System.out.println("Electonics :" + Power_Consumption);
+    }
+
 }
 
 class Television extends ElectronicProduct implements SpecialShipping {

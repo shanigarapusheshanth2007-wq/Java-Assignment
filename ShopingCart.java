@@ -36,6 +36,12 @@ class ShopingCart {
         }
     }
 
+    protected void addProduct(Product p, int count) {
+        for (int i = 0; i < cart.size(); i++) {
+            cart.add(p);
+        }
+    }
+
     protected void removeProduct(Product p) {
         cart.remove(findindex(p));
     }

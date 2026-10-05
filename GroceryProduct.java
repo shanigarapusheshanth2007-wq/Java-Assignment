@@ -27,6 +27,13 @@ abstract class GroceryProduct extends Product {
     protected int getWeight() {
         return Weight;
     }
+        @Override
+    public void printDetails()
+    {
+        super.printDetails();
+        System.out.println("weight is :"+Weight);
+        System.out.println("Expire :"+Expire);
+    }
 }
 
 class Milk extends GroceryProduct implements Expirable {
@@ -83,6 +90,7 @@ class Milk extends GroceryProduct implements Expirable {
     public void setExpire(int i) {
         this.Expire = i;
     }
+
 
 }
 

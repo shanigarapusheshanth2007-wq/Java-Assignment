@@ -24,6 +24,14 @@ abstract class ClothingProduct extends Product {
         this.Size = Size;
     }
 
+    @Override
+    public void printDetails()
+    {
+        super.printDetails();
+        System.out.println("Material is :"+Material);
+        System.out.println("Gender :"+Gender);
+        System.out.println("Size :"+Size);
+    }
 }
 
 class Shirt extends ClothingProduct {

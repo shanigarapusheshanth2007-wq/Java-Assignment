@@ -63,10 +63,6 @@ class test {
         // sc.addProduct(g2);
         // sc.addProduct(g1);
         // sc.Display();
-        // Product p1 = new Milk(
-        //         "Full Cream Milk", "Amul", 65, 50, 5, 5, 20, 7, 10,
-        //         "01-10-2026", 7, 500
-        // );
         // Product p2 = new Bread(
         //         "Brown Bread", "Britannia", 45, 30, 5, 5, 15, 3, 5,
         //         "01-10-2026", 5, 400
@@ -198,7 +194,7 @@ class test {
         //         500 // Weight
         // );
         // Product milk2 = new Milk(
-        //         "arun Milk",
+        //       "arun Milk",
         //         "Amul",
         //         60, // retail_price
         //         10, // available_quantity
@@ -295,6 +291,10 @@ class test {
         // // service.getDetails(copy);
         // System.out.println("------------------------------------------------");
         // System.out.println(copy.getExpire());
+        Product p1 = new Milk(
+                "Full Cream Milk", "Amul", 65, 50, 5, 5, 20, 7, 10,
+                "01-10-2026", 7, 500
+        );
         Manufacturer m1 = new Manufacturer("Sheshanth ", "india");
         Product tv = new Television(
                 "Smart TV",
@@ -309,7 +309,7 @@ class test {
                 "Samsung",
                 "2 years",
                 "150W",
-                new Manufacturer("Samsung", "South Korea")
+                m1
         );
         Product laptop = new Laptop(
                 "Gaming Laptop",
@@ -324,7 +324,7 @@ class test {
                 500,
                 7,
                 5,
-                new Manufacturer("Dell", "USA")
+                m1
         );
         Product speaker = new BluetoothSpeaker(
                 "Bluetooth Speaker",
@@ -339,7 +339,7 @@ class test {
                 100,
                 7,
                 2,
-                new Manufacturer("Sony", "Japan")
+                m1
         );
         Product headphones = new WirelessHeadphones(
                 "Wireless Headphones",
@@ -354,7 +354,7 @@ class test {
                 50,
                 7,
                 2,
-                new Manufacturer("Boat", "India")
+                m1
         );
         Product tv2 = new Television(
                 "OLED TV",
@@ -369,7 +369,7 @@ class test {
                 "LG",
                 "3 years",
                 "200W",
-                new Manufacturer("LG", "South Korea")
+                m1
         );
         ProductServices service = new ProductServices();
         service.printall();
@@ -377,5 +377,42 @@ class test {
         m2.setName("sai Yashika fellow");
         m1.display();
         m2.display();
+        tv2.setRetailPrice(1000);
+        System.out.println("********************************************");
+        tv2.price_history();
+        p1.printDetails();
+        tv2.printDetails();
+        Product milk1 = new Milk(
+                "Amul Milk",
+                "Amul",
+                8000, // retail_price
+                5, // available_quantity
+                10, // Discount
+                5, // Tax
+                20, // Delivery
+                7, // Return_days
+                5, // Additional_festival_discount
+                "01-10-2026", // Manufacturing
+                10, // Expire
+                500 // Weight
+        );
+        System.out.println(milk1.getRetailPrice());
+        Product milk2 = new Milk(
+                "Amul Milk",
+                "Amul",
+                100, // retail_price
+                10, // available_quantity
+                10, // Discount
+                5, // Tax
+                20, // Delivery
+                7, // Return_days
+                5, // Additional_festival_discount
+                "02-10-2026", // Manufacturing
+                10, // Expire
+                500 // Weight
+        );
+        milk1.updateProduct(milk2);
+        System.out.println(milk1.getRetailPrice());
+
     }
 }

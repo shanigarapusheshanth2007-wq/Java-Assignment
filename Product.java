@@ -39,9 +39,6 @@ abstract class Product implements Cloneable {
         ProductServices.addToProduct(this);
     }
 
-
-    
-
     //cloning a product
     protected Product(Product p) {
 
@@ -60,8 +57,27 @@ abstract class Product implements Cloneable {
         ProductServices.addToProduct(this);
     }
 
+    protected void updateProduct(Product p) {
+
+        if (this.equals(p)) {
+            this.setRetailPrice(p.getRetailPrice());
+            return;
+        }
+        System.out.println("No product same found please check the product details correctly");
+        return;
+    }
+
     //made abstract void descripiton 
     protected abstract void getDescription();
+
+    public void printDetails() {
+        System.out.println(this);
+        System.out.println("Prodcut name :" + product_name);
+        System.out.println("Product id :" + product_id);
+        System.out.println("Brand :" + brand);
+        System.out.println("Price :" + retail_price);
+        System.out.println("Product quantity :" + available_quantity);
+    }
 
     public abstract String getPostPurchaseMessage();
 
@@ -126,8 +142,12 @@ abstract class Product implements Cloneable {
         this.available_quantity = this.available_quantity + a;
     }
 
-    protected void setRetailPrice(int price) {
-        System.out.println("Previous price is :₹ "+price_history.get(price_history.size()-1));
+    public void setRetailPrice(int price) {
+        if (price_history.size() == 0) {
+            price_history.add(price);
+        }
+        System.out.println("Previous price is :₹ " + price_history.get(price_history.size() - 1));
+        System.out.println("Current price set is :₹" + price);
         this.retail_price = price;
         price_history.add(price);
         return;
@@ -139,7 +159,7 @@ abstract class Product implements Cloneable {
     //     return this.getClass().getSimpleName() + " :  " + this.getCategory();
     // }
     public String toString() {
-        return getClass().getName() + '@' + Integer.toHexString(hashCode());
+        return getClass().getName() + '@';
     }
 
     public boolean equals(Object obj) {
@@ -147,7 +167,7 @@ abstract class Product implements Cloneable {
             return false;
         }
         Product p = (Product) obj;
-        if (p.getProductName().equals(this.product_name) && p.getRetailPrice() == this.retail_price) {
+        if (p.getProductName().equals(this.product_name)) {
             return true;
         } else {
             return false;
